@@ -26,11 +26,11 @@ void Animation::load(const char* name) {
 
     SDL_Log("Loading Animation");
 
-    list<SDL_Texture*>* loadedFrames;
-
     loadedFrames->push_back(loadFrame(name));
 
-    loadedAnimations[name] = loadedFrames;
+    //loadedAnimations[name] = loadedFrames;
+
+    //loadedFrames->empty();
 
 }
 

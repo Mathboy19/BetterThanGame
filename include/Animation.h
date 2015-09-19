@@ -34,6 +34,8 @@ class Animation
 
         std::map<const char*, list<SDL_Texture*> > entityList; //id of entity and its current frames
 
+        list<SDL_Texture*>* loadedFrames;
+
     private:
 };
 
