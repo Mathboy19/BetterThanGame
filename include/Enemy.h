@@ -1,8 +1,8 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <Entity.h>
-#include<Hero.h>
+#include"Entity.h"
+#include"Hero.h"
 
 class Enemy : public Entity
 {

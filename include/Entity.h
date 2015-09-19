@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include<SDL2/SDL.h>
-#include<Animation.h>
+#include"Animation.h"
 
 class Entity
 {

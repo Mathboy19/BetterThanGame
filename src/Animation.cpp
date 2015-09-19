@@ -26,6 +26,8 @@ void Animation::load(const char* name) {
 
     SDL_Log("Loading Animation");
 
+    loadedFrames->empty();
+
     loadedFrames->push_back(loadFrame(name));
 
     //loadedAnimations[name] = loadedFrames;
