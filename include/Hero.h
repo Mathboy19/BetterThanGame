@@ -8,7 +8,7 @@
 class Hero : public Entity
 {
     public:
-        Hero(SDL_Texture* givenTexture, SDL_Rect givenRect, SDL_Renderer* givenRender, const char* givenId, Animation* givenAnimation);
+        Hero(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, Animation* givenAnimation);
         void passKeyStates(const Uint8* keyStates);
         void logic();
 

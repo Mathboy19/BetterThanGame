@@ -26,7 +26,7 @@ protected:
     bool testRight;
     bool testLeft;
     //Input *mainInput;
-    Graphics *mainGraphics;
+    //Graphics *mainGraphics;
     //Entity *hero;
     Hero *hero;
     Enemy *enemy;

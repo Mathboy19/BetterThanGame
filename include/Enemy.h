@@ -7,7 +7,7 @@
 class Enemy : public Entity
 {
     public:
-        Enemy(SDL_Texture* givenTexture, SDL_Rect givenRect, SDL_Renderer* givenRender, const char* givenId, Animation* givenAnimation);
+        Enemy(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, Animation* givenAnimation);
         void logic(Hero* hero);
     protected:
     private:

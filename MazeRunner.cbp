@@ -37,12 +37,14 @@
 			<Add option="-lSDL2 -lSDL2_image" />
 		</Linker>
 		<Unit filename="include/Animation.h" />
+		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/Engine.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Graphics.h" />
 		<Unit filename="include/Hero.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
+		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/Engine.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Graphics.cpp" />

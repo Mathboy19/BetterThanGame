@@ -4,7 +4,8 @@
 
 
 
-Hero::Hero(SDL_Texture* givenTexture, SDL_Rect givenRect, SDL_Renderer* givenRender, const char* givenId, Animation *givenAnimation):Entity(givenTexture, givenRect, givenRender, givenId, givenAnimation) {
+Hero::Hero(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, Animation *givenAnimation)
+    :Entity(givenTexture, givenRect, givenId, givenAnimation) {
 
     //load animations
 

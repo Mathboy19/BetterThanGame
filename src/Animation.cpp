@@ -1,11 +1,14 @@
 #include "Animation.h"
 
-Animation::Animation(SDL_Renderer* givenRender)
+
+Animation::Animation()
 {
     //test code
     //frames.clear();
 
-    render = givenRender;
+    //graphics = givenGraphics;
+
+    render = Graphics::returnRender();
 
 
     SDL_Log("Animation Initialized");
@@ -23,38 +26,6 @@ void Animation::initEntity(const char* id) {
 
 void Animation::load(const char* name) {
 
-
-    SDL_Log("Loading Animation");
-
-    loadedFrames->empty();
-
-    loadedFrames->push_back(loadFrame(name));
-
-    //loadedAnimations[name] = loadedFrames;
-
-    //loadedFrames->empty();
-
-}
-
-void Animation::start(const char* name, const char* id) {
-
-    SDL_Log("Starting Animation");
-
-    currentlyAnimating = true;
-
-    std::list<SDL_Texture*>* frames;
-
-    frames = &entityList[id];
-
-    frames = loadedAnimations[name];
-
-}
-
-SDL_Texture* Animation::loadFrame(const char* name) {
-
-    SDL_Surface* surface;
-    SDL_Texture* texture;
-
     char* path = new char[128];
 
     strcpy(path, name);
@@ -62,43 +33,29 @@ SDL_Texture* Animation::loadFrame(const char* name) {
     strcat(path, ".png");
     SDL_Log(path);
 
+    SDL_Log("Loading Animation");
 
-    surface = IMG_Load(path);
+    list<SDL_Texture*> dummy;
 
-    if(surface != NULL)
-    {
 
-        /* //old alphamask, not needed after having transparent backgrounds
-        if(alphaMask)
-        {
-            if(surface != NULL)
-            {
-                Uint32 colorKey = SDL_MapRGB(surface->format, 255, 255, 255);
-                SDL_SetColorKey(surface, SDL_TRUE, colorKey);
-            }
-        }
-        */ //end alphamask
+    dummy.push_back(Graphics::createTexture(path));
 
-        texture = SDL_CreateTextureFromSurface(render, surface);
-        SDL_FreeSurface(surface);
+    loadedAnimations[name] = dummy;
 
-        if(texture != NULL) {
+    //loadedFrames->empty();
 
-            return texture;
+}
 
-        } else {
+void Animation::start(const char* name, const char* id) {
 
-            SDL_Log("Animation Texture is null");
-            SDL_Log(SDL_GetError());
-            return NULL;
+    //SDL_Log("Starting Animation");
 
-        }
-    }
-    else
-    {
-        SDL_Log("Could not load image!");
-        return NULL;
-    }
+
+
+    //std::list<SDL_Texture*> frames;
+
+    entityList[id] = loadedAnimations[name];
+
 }
 
 SDL_Texture* Animation::getFrame(const char* id) {
@@ -126,12 +83,6 @@ SDL_Texture* Animation::getFrame(const char* id) {
         */
 
         frames->pop_front();
-
-        if(frames->empty()) { //are we done with the current animation?
-
-        currentlyAnimating = false;
-
-        }
 
     }
 

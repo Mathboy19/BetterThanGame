@@ -1,11 +1,11 @@
 #include "Graphics.h"
 
-Graphics::Graphics()
+namespace Graphics
 {
-    SDL_Log("Grahpics Initiated");
-}
+SDL_Window *mainWindow;
+SDL_Renderer *mainRender;
 
-int Graphics::initWindow(int width, int height)
+int initWindow(int width, int height)
 {
     if( SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
@@ -41,23 +41,23 @@ int Graphics::initWindow(int width, int height)
     return 0;
 }
 
-void Graphics::quit()
+void quit()
 {
     SDL_DestroyRenderer(mainRender);
     SDL_DestroyWindow(mainWindow);
 }
 
-void Graphics::clearScreen(int r, int g, int b)
+void clearScreen(int r, int g, int b)
 {
     SDL_SetRenderDrawColor(mainRender, r, g, b, 255);
     SDL_RenderClear(mainRender);
 }
-void Graphics::update()
+void update()
 {
     SDL_RenderPresent(mainRender);
 }
 
-SDL_Texture* Graphics::createTexture(const char* file, bool alphaMask)
+SDL_Texture* createTexture(const char* file)
 {
     SDL_Surface* surface;
     SDL_Texture* texture;
@@ -69,16 +69,6 @@ SDL_Texture* Graphics::createTexture(const char* file, bool alphaMask)
     if(surface != NULL)
     {
 
-        //old alphamask, not needed after having transparent backgrounds
-        if(alphaMask)
-        {
-            if(surface != NULL)
-            {
-                Uint32 colorKey = SDL_MapRGB(surface->format, 255, 255, 255);
-                SDL_SetColorKey(surface, SDL_TRUE, colorKey);
-            }
-        }
-        //end alphamask
 
         texture = SDL_CreateTextureFromSurface(mainRender, surface);
         SDL_FreeSurface(surface);
@@ -91,8 +81,11 @@ SDL_Texture* Graphics::createTexture(const char* file, bool alphaMask)
         return NULL;
     }
 }
+list<SDL_Texture*> createSheet(const char* file, int frames) {
 
-void Graphics::drawTexture(SDL_Texture *texture, SDL_Rect rect)
+}
+
+void drawTexture(SDL_Texture *texture, SDL_Rect rect)
 {
 
     if(texture == NULL)
@@ -106,9 +99,11 @@ void Graphics::drawTexture(SDL_Texture *texture, SDL_Rect rect)
 
 }
 
-SDL_Renderer* Graphics::returnRender()
+SDL_Renderer* returnRender()
 {
 
     return mainRender;
 }
 
+
+}

@@ -6,7 +6,7 @@
 class Entity
 {
     public:
-        Entity(SDL_Texture* givenTexture, SDL_Rect rect, SDL_Renderer* givenRender, const char* givenId, Animation *givenAnimation);
+        Entity(SDL_Texture* givenTexture, SDL_Rect rect, const char* givenId, Animation *givenAnimation);
         SDL_Texture* getTexture();
         SDL_Texture* getCurrentTexture();
         SDL_Rect getRect();

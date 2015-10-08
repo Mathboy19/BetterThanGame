@@ -1,10 +1,10 @@
 #include "Entity.h"
 
-Entity::Entity(SDL_Texture* givenTexture, SDL_Rect givenRect, SDL_Renderer* givenRender, const char* givenId, Animation *givenAnimation)
+Entity::Entity(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, Animation *givenAnimation)
 {
     texture = givenTexture;
     rect = givenRect;
-    render = givenRender;
+
     id = givenId;
     //init animation
     animation = givenAnimation;
@@ -29,6 +29,7 @@ SDL_Texture* Entity::getCurrentTexture() {
 
     if (animationFrame == NULL) {
 
+        //SDL_Log("AnimationFrame = NULL");
         return getTexture();
 
     } else { //if there is a texture

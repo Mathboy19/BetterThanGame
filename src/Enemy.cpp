@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
-Enemy::Enemy(SDL_Texture* givenTexture, SDL_Rect givenRect, SDL_Renderer* givenRender, const char* givenId, Animation* givenAnimation)
-      :Entity(givenTexture, givenRect, givenRender, givenId, givenAnimation) {
+Enemy::Enemy(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, Animation* givenAnimation)
+      :Entity(givenTexture, givenRect, givenId, givenAnimation) {
     //ctor
 
     animation->load("enemyhurt");

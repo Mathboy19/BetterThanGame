@@ -13,11 +13,14 @@ Engine::Engine()
 void Engine::init(int width, int height)
 {
 
-    mainGraphics = new Graphics();
+    //mainGraphics = new Graphics();
 
-    mainGraphics->initWindow(width, height);
+    //mainGraphics->initWindow(width, height);
+    Graphics::initWindow(width, height);
 
-    animation = new Animation(mainGraphics->returnRender());
+
+
+    animation = new Animation();
 
 
     //this initilizes the entity hero
@@ -28,11 +31,11 @@ void Engine::init(int width, int height)
     //uuid
     const char* id = "1";
 
-    SDL_Texture *heroTexture = mainGraphics->createTexture("hero.png", false);
+    SDL_Texture *heroTexture = Graphics::createTexture("hero.png");
 
     SDL_Rect heroRect = {0, 0, 40, 60};
 
-    hero = new Hero(heroTexture, heroRect, mainGraphics->returnRender(), id, animation);
+    hero = new Hero(heroTexture, heroRect, id, animation);
 
     //this initilizes the entity enemy
     //really hope I can replace this soon
@@ -42,11 +45,11 @@ void Engine::init(int width, int height)
     //uuid
     id = "2";
     //texture
-    SDL_Texture *enemyTexture = mainGraphics->createTexture("enemy.png", false);
+    SDL_Texture *enemyTexture = Graphics::createTexture("enemy.png");
     //rect
     SDL_Rect enemyRect = {200, 200, 40, 60};
 
-    enemy = new Enemy(enemyTexture, enemyRect, mainGraphics->returnRender(), id, animation);
+    enemy = new Enemy(enemyTexture, enemyRect, id, animation);
 
     //entityList.push_back(hero);
 
@@ -98,10 +101,10 @@ void Engine::gameLoop()
 
 
         //start render
-        mainGraphics->clearScreen(86, 169, 83);
-        mainGraphics->drawTexture(hero->getCurrentTexture(), hero->getRect());
-        mainGraphics->drawTexture(enemy->getCurrentTexture(), enemy->getRect());
-        mainGraphics->update();
+        Graphics::clearScreen(86, 169, 83);
+        Graphics::drawTexture(hero->getCurrentTexture(), hero->getRect());
+        Graphics::drawTexture(enemy->getCurrentTexture(), enemy->getRect());
+        Graphics::update();
 
         //end counter
         frameEndTime = SDL_GetTicks();
@@ -119,6 +122,6 @@ void Engine::gameLoop()
 
 void Engine::quitAll()
 {
-    mainGraphics->quit();
+    Graphics::quit();
 
 }
