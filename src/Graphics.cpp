@@ -81,7 +81,65 @@ SDL_Texture* createTexture(const char* file)
         return NULL;
     }
 }
-list<SDL_Texture*> createSheet(const char* file, int frames) {
+list<SDL_Texture*>* createSheet(const char* file, int frames) {
+
+    if(frames == 0) {
+        return NULL;
+        SDL_Log("Graphics::createSheet Frames cannot = 0!");
+    }
+
+
+    list<SDL_Texture*> frameList;
+
+    SDL_Surface* surface;
+    SDL_Surface* tempSurface;
+    SDL_Texture* texture;
+    SDL_Rect surfaceRect;
+    SDL_Rect tempRect;
+
+    int frameWidth;
+    int frameHeight;
+
+
+    surface = IMG_Load(file);
+    if(surface != NULL) {
+        //SDL_Log("Sprite sheet is not null");
+        SDL_Log("Height: %d", surface->h);
+        SDL_Log("Width: %d", surface->w);
+
+        frameWidth = (surface->w)/frames;
+
+
+        SDL_Log("frameWidth: %d", frameWidth);
+        for (int i = 1; i <= frames; i++) {
+            SDL_Log("Frame: %d", i);
+            surfaceRect.x = i * surface->w;
+            surfaceRect.y = 0;
+            surfaceRect.h = surface->h;
+            surfaceRect.w = (surface->w)/frames;
+
+            tempRect.x = 0;
+            tempRect.y = 0;
+            tempRect.h = surface->h;
+            tempRect.w = (surface->w)/frames;
+
+            SDL_BlitSurface(surface, &surfaceRect, tempSurface, &tempRect);
+            if(tempSurface != NULL) {
+                frameList.push_back(SDL_CreateTextureFromSurface(mainRender, tempSurface));
+            } else {
+                SDL_Log("tempSurface = NULL");
+            }
+        }
+
+
+
+    } else {
+        SDL_Log("Couldn't load sprite sheet");
+        SDL_Log(SDL_GetError());
+
+    }
+
+    return NULL;
 
 }
 

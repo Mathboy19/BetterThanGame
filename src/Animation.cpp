@@ -46,6 +46,22 @@ void Animation::load(const char* name) {
 
 }
 
+void Animation::loadSheet(const char* name, int frames) {
+
+    char* path = new char[128];
+
+    strcpy(path, name);
+    //SDL_Log(path or name);
+    strcat(path, ".png");
+
+    SDL_Log(path);
+
+
+
+    list<SDL_Texture*>* null = Graphics::createSheet(path, frames);
+
+}
+
 void Animation::start(const char* name, const char* id) {
 
     //SDL_Log("Starting Animation");

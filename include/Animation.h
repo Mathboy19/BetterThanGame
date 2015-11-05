@@ -19,6 +19,7 @@ class Animation
         Animation();
         void initEntity(const char* id);
         void load(const char* name);
+        void loadSheet(const char* name, int frames);
         void start(const char* name, const char* id);
         SDL_Texture* getFrame(const char* id);
 
