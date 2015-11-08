@@ -58,7 +58,10 @@ void Animation::loadSheet(const char* name, int frames) {
 
 
 
-    list<SDL_Texture*>* null = Graphics::createSheet(path, frames);
+    list<SDL_Texture*>* spreadSheet = Graphics::createSheet(path, frames);
+    if (spreadSheet == NULL) {
+        SDL_Log("spreadSheet was equal to Null!");
+    }
 
 }
 
