@@ -111,7 +111,8 @@ list<SDL_Texture*>* createSheet(const char* file, int frames) {
 
 
         SDL_Log("frameWidth: %d", frameWidth);
-        for (int i = 1; i <= frames; i++) {
+        for (int i = 0; i < frames; i++) {
+            tempSurface = SDL_CreateRGBSurface(0, (surface->w/frames), surface->h, 32, 0, 0, 0 ,0);
             SDL_Log("Frame: %d", i);
             surfaceRect.x = i * surface->w;
             surfaceRect.y = 0;
@@ -122,13 +123,24 @@ list<SDL_Texture*>* createSheet(const char* file, int frames) {
             tempRect.y = 0;
             tempRect.h = surface->h;
             tempRect.w = (surface->w)/frames;
-
-            SDL_BlitSurface(surface, &surfaceRect, tempSurface, &tempRect);
-            if(tempSurface != NULL) {
-                frameList.push_back(SDL_CreateTextureFromSurface(mainRender, tempSurface));
+            SDL_Log("sourceRect.x = %d", surfaceRect.x);
+            if(surface != NULL) {
+                SDL_BlitSurface(surface, &surfaceRect, tempSurface, &tempRect);
+                if(tempSurface != NULL) {
+                    frameList.push_back(SDL_CreateTextureFromSurface(mainRender, tempSurface));
+                } else {
+                    SDL_Log("tempSurface = NULL Error: %s", SDL_GetError());
+                }
             } else {
-                SDL_Log("tempSurface = NULL");
+                SDL_Log("Sheet Sprite Surface was Null Error: %s", SDL_GetError());
             }
+
+        }
+        if(&frameList != NULL) {
+            return &frameList;
+        } else {
+            SDL_Log("frameList is equal to NULL!");
+            return NULL;
         }
 
 
@@ -136,10 +148,11 @@ list<SDL_Texture*>* createSheet(const char* file, int frames) {
     } else {
         SDL_Log("Couldn't load sprite sheet");
         SDL_Log(SDL_GetError());
+        return NULL;
 
     }
 
-    return NULL;
+
 
 }
 
