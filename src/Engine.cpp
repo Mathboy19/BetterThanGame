@@ -107,12 +107,9 @@ void Engine::gameLoop()
         Graphics::update();
 
         //end counter
-        frameEndTime = SDL_GetTicks();
+        //frameEndTime = SDL_GetTicks();
 
-        if ((1000/55) > (frameEndTime - frameStartTime))
-        {
-            SDL_Delay((1000/55) - (frameEndTime - frameStartTime));
-        }
+
 
         //SDL_Log("FPS: %f", (1000/(SDL_GetTicks() - frameStartTime)));
     }

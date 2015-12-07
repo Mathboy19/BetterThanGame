@@ -58,22 +58,28 @@ void Animation::loadSheet(const char* name, int frames) {
 
 
 
-    list<SDL_Texture*>* spreadSheet = Graphics::createSheet(path, frames);
-    if (spreadSheet == NULL) {
-        SDL_Log("spreadSheet was equal to Null!");
+    list<SDL_Texture*> spreadSheet = Graphics::createSheet(path, frames);
+    if (spreadSheet.empty()) {
+        SDL_Log("spreadSheet was empty");
+    } else {
+        loadedAnimations[name] = spreadSheet;
+
     }
+
 
 }
 
 void Animation::start(const char* name, const char* id) {
 
-    //SDL_Log("Starting Animation");
+    SDL_Log("Starting Animation");
 
 
 
     //std::list<SDL_Texture*> frames;
 
     entityList[id] = loadedAnimations[name];
+
+
 
 }
 

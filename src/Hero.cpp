@@ -11,7 +11,8 @@ Hero::Hero(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, A
 
 
     animation->loadSheet("herosinks", 5);
-    animation->load("herosad");
+
+    animation->loadSheet("herosad", 1);
 
 
 
@@ -41,6 +42,10 @@ void Hero::logic() {
         if(currentKeyStates[SDL_SCANCODE_SPACE] == true) {
             //animation->load("herosad");
             animation->start("herosad", id);
+        }
+        if(currentKeyStates[SDL_SCANCODE_Z]== true) {
+            //SDL_Log("Z input detected");
+            animation->start("herosinks", id);
         }
 
 }
