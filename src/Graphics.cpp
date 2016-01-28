@@ -7,8 +7,10 @@ SDL_Renderer *mainRender;
 
 int initWindow(int width, int height)
 {
+
     if( SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
+
 
         SDL_Log("SDL could not initilize! SDL_Error:%s", SDL_GetError());
         return 1;

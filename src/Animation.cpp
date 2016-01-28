@@ -11,7 +11,7 @@ Animation::Animation()
     render = Graphics::returnRender();
 
 
-    SDL_Log("Animation Initialized");
+    SDL_Log("Animation Initialized a;sdlfkj");
 }
 
 void Animation::initEntity(const char* id) {
@@ -37,7 +37,7 @@ void Animation::load(const char* name) {
 
     list<SDL_Texture*> dummy;
 
-
+    //dummy text
     dummy.push_back(Graphics::createTexture(path));
 
     loadedAnimations[name] = dummy;
