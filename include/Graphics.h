@@ -15,7 +15,7 @@ namespace Graphics
         void quit();
         SDL_Renderer* returnRender();
         SDL_Texture* createTexture(const char* file);
-        list<SDL_Texture*> createSheet(const char* file, int frames);
+        list<SDL_Texture*> createSheet(const char* file, int frames, int delay);
         void drawTexture(SDL_Texture *texture, SDL_Rect rect);
 
 }

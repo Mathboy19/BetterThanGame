@@ -10,9 +10,9 @@ Hero::Hero(SDL_Texture* givenTexture, SDL_Rect givenRect, const char* givenId, A
     //load animations
 
 
-    animation->loadSheet("herosinks", 5);
+    animation->loadSheet("herosinks", 5, 30);
 
-    animation->loadSheet("herosad", 1);
+    animation->loadSheet("herosad", 1, 60);
 
 
 

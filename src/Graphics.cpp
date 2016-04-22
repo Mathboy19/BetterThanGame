@@ -83,11 +83,11 @@ SDL_Texture* createTexture(const char* file)
         return NULL;
     }
 }
-list<SDL_Texture*> createSheet(const char* file, int frames) {
+list<SDL_Texture*> createSheet(const char* file, int frames, int delay) {
 
-    if(frames == 0) {
+    if(frames <= 0) {
         //return NULL;
-        SDL_Log("Graphics::createSheet Frames cannot = 0!");
+        SDL_Log("Graphics::createSheet Frames cannot <= 0!");
     }
 
     list<SDL_Texture*> frameList;
@@ -115,12 +115,18 @@ list<SDL_Texture*> createSheet(const char* file, int frames) {
 
         SDL_Log("frameWidth: %d", frameWidth);
         for (int i = 0; i < frames; i++) {
-            tempSurface = SDL_CreateRGBSurface(0, (surface->w/frames), surface->h, 16, 0, 0, 0, 0);
+
+		    Uint32 rmask = 0x000000ff;
+    		Uint32 gmask = 0x0000ff00;
+    		Uint32 bmask = 0x00ff0000;
+			Uint32 amask = 0xff000000;
+			
+            tempSurface = SDL_CreateRGBSurface(0, (surface->w/frames), surface->h, 32, rmask, gmask, bmask, amask);
 
             SDL_SetSurfaceBlendMode(surface, SDL_BLENDMODE_NONE);
 
             SDL_Log("Frame: %d", i);
-            surfaceRect.x = i * surface->w;
+            surfaceRect.x = i * (surface->w)/frames;
             surfaceRect.y = 0;
             surfaceRect.h = surface->h;
             surfaceRect.w = (surface->w)/frames;
@@ -134,7 +140,11 @@ list<SDL_Texture*> createSheet(const char* file, int frames) {
                 SDL_BlitSurface(surface, &surfaceRect, tempSurface, &tempRect);
 
                 if(tempSurface != NULL) {
-                    frameList.push_back(SDL_CreateTextureFromSurface(mainRender, tempSurface));
+					SDL_Texture* frame = SDL_CreateTextureFromSurface(mainRender, tempSurface);
+					
+					for (int i = 0; i < delay;  i++) {
+                    	frameList.push_back(frame);
+					}
                 } else {
                     SDL_Log("tempSurface = NULL Error: %s", SDL_GetError());
                 }

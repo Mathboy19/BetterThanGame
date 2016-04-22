@@ -46,7 +46,7 @@ void Animation::load(const char* name) {
 
 }
 
-void Animation::loadSheet(const char* name, int frames) {
+void Animation::loadSheet(const char* name, int frames, int delay) {
 
     char* path = new char[128];
 
@@ -58,7 +58,7 @@ void Animation::loadSheet(const char* name, int frames) {
 
 
 
-    list<SDL_Texture*> spreadSheet = Graphics::createSheet(path, frames);
+    list<SDL_Texture*> spreadSheet = Graphics::createSheet(path, frames, delay);
     if (spreadSheet.empty()) {
         SDL_Log("spreadSheet was empty");
     } else {
