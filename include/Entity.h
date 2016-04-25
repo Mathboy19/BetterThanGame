@@ -16,6 +16,7 @@ class Entity
         void setY(int y);
         void incrementX(int x);
         void incrementY(int y);
+		const char* getId();
         virtual ~Entity();
 
     protected:
@@ -25,10 +26,10 @@ class Entity
         SDL_Rect rect;
         int x;
         int y;
-        const char* id;
 
 
     private:
+		const char* id;
 
 };
 

@@ -41,11 +41,11 @@ void Hero::logic() {
         }
         if(currentKeyStates[SDL_SCANCODE_SPACE] == true) {
             //animation->load("herosad");
-            animation->start("herosad.png", id);
+            animation->start("herosad.png", getId());
         }
         if(currentKeyStates[SDL_SCANCODE_Z]== true) {
             //SDL_Log("Z input detected");
-            animation->start("herosinks.png", id);
+            animation->start("herosinks.png", getId());
         }
 
 }

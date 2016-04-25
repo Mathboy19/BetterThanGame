@@ -69,4 +69,8 @@ void Entity::incrementY(int y) {
     rect.y = rect.y + y;
 }
 
+const char*  Entity::getId() {
+	return id;
+}
+
 
