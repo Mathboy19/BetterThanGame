@@ -26,23 +26,31 @@ void Animation::initEntity(const char* id) {
 
 void Animation::load(const char* name) {
 
-    char* path = new char[128];
+	if(!(strlen(name) > 256)) {
 
-    strcpy(path, name);
-    //SDL_Log(path or name);
-    strcat(path, ".png");
-    SDL_Log(path);
 
-    SDL_Log("Loading Animation");
+    	char* path = new char[255];
 
-    list<SDL_Texture*> dummy;
+    	strcpy(path, name);
+    	//SDL_Log(path or name);
+    	strcat(path, ".png");
+    	SDL_Log(path);
 
-    //dummy text
-    dummy.push_back(Graphics::createTexture(path));
+    	SDL_Log("Loading Animation");
 
-    loadedAnimations[name] = dummy;
+    	list<SDL_Texture*> dummy;
 
-    //loadedFrames->empty();
+    	//dummy text
+    	dummy.push_back(Graphics::createTexture(path));
+
+    	loadedAnimations[name] = dummy;
+
+    	//loadedFrames->empty();
+
+	} else {
+		SDL_Log("no strings longer than 256!");
+		SDL_Log("Stop it jack!");	
+	}
 
 }
 

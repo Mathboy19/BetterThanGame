@@ -6,13 +6,14 @@ LFLAGS = -Wall $(DEBUG)
 INCLUDE = -Iinclude
 LIBS = -lSDL2 -lSDL2_image
 
-complete: $(OBJS)
+complete: $(OBJS) bin
 	$(CC) $(LFLAGS) $(OBJS) $(LIBS) -o bin/build 
 
 clean:
 	\rm -R obj/*.o bin/build
 
-
+bin:
+	mkdir bin
 
 
 

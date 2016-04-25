@@ -33,7 +33,7 @@ void Engine::init(int width, int height)
 
     SDL_Texture *heroTexture = Graphics::createTexture("hero.png");
 
-    SDL_Rect heroRect = {0, 0, 40, 60};
+    SDL_Rect heroRect = {0, 0, 80, 120};
 
     hero = new Hero(heroTexture, heroRect, id, animation);
 
