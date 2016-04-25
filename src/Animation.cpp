@@ -11,7 +11,7 @@ Animation::Animation()
     render = Graphics::returnRender();
 
 
-    SDL_Log("Animation Initialized a;sdlfkj");
+    SDL_Log("Animation Initialized");
 }
 
 void Animation::initEntity(const char* id) {
@@ -26,10 +26,10 @@ void Animation::initEntity(const char* id) {
 
 void Animation::load(const char* name) {
 
-	if(!(strlen(name) > 256)) {
+	if(!(strlen(name) > 128)) {
+		//SDL_Log("Length: %n", strlen(name));
 
-
-    	char* path = new char[255];
+    	char* path = new char[131];
 
     	strcpy(path, name);
     	//SDL_Log(path or name);
@@ -48,33 +48,35 @@ void Animation::load(const char* name) {
     	//loadedFrames->empty();
 
 	} else {
-		SDL_Log("no strings longer than 256!");
-		SDL_Log("Stop it jack!");	
+		SDL_Log("no strings longer than 128!");
 	}
 
 }
 
 void Animation::loadSheet(const char* name, int frames, int delay) {
 
-    char* path = new char[128];
+    if(!(strlen(name) > 128)) {
+		char* path = new char[131];
 
-    strcpy(path, name);
-    //SDL_Log(path or name);
-    strcat(path, ".png");
+    	strcpy(path, name);
+    	//SDL_Log(path or name);
+    	strcat(path, ".png");
 
-    SDL_Log(path);
-
-
-
-    list<SDL_Texture*> spreadSheet = Graphics::createSheet(path, frames, delay);
-    if (spreadSheet.empty()) {
-        SDL_Log("spreadSheet was empty");
-    } else {
-        loadedAnimations[name] = spreadSheet;
-
-    }
+    	SDL_Log(path);
 
 
+    	list<SDL_Texture*> spreadSheet = Graphics::createSheet(path, frames, delay);
+    	if (spreadSheet.empty()) {
+       		 SDL_Log("spreadSheet was empty");
+    	} else {
+       	 loadedAnimations[name] = spreadSheet;
+
+    	}
+	} else {
+		SDL_Log("loadSheet failed");
+		SDL_Log("Names cannot be longer than 128");
+	}
+	
 }
 
 void Animation::start(const char* name, const char* id) {
